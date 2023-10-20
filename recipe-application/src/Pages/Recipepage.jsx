@@ -4,16 +4,23 @@ import React, { useEffect, useState } from 'react'
 import { apikey, url } from '../ApiKey/Apikey'
 import HomepageRecipeCard from './HomepageRecipeCard'
 import Footer from '../Components/Footer'
+import Filter from './Filter'
+import { useLocation, useSearchParams } from 'react-router-dom'
 
 export default function Recipepage() {
   const [recipedata,setRecipedata]=useState([])
+  const [searchparams]=useSearchParams()
+  // const [ingredients,setIngredients]=useState(searchparams.get("ingredients"))
+  // console.log(ingredients,"ing")
   const [loading,setLoading]=useState(false)
 
   const [error,setError]=useState(false)
-
+const location=useLocation()
   useEffect(()=>{
+    console.log(searchparams.get("ingredients"),"hek")
     getrecipes()
-  },[])
+    
+  },[location.search])
 // getrecipes
   const getrecipes=()=>{
     setLoading(true)
@@ -32,22 +39,16 @@ export default function Recipepage() {
 
 
   }
+  // if(loading){
+  //   return <Center>Loading...</Center>
+  // }
+  // else if(error){
+  //   return <Center>Something going wrong..</Center>
+  // }
   return (
 <>
-<Box  w="90%" margin="auto" pb="30px" display="flex" justifyContent="space-between" border="1px solid red">
-  <Box>
-<Box><FormLabel>FindByNutrients</FormLabel>
-<input value={"findByNutrients"} name="name" type="radio" onChange={handleby}/>
-<Box>
- <Box><FormLabel>minCarbs</FormLabel>
- <input type="number" placeholder='from'/> <input type="number" placeholder='to'/>
- </Box> 
-</Box>
-</Box>
-<Box><FormLabel>FindByIngredients</FormLabel>
-<input value={"findByIngredients"} name="name" type="radio" display="inline" onChange={handleby}/>
-</Box>
-  </Box>
+<Box  w="90%" margin="auto" pb="30px"  border="1px solid red">
+  <Box display={"flex"} justifyContent={"right"} alignItems={"right"}><Filter/></Box>
 <Box display={"grid"} gridTemplateColumns={["repeat(1,1fr)","repeat(2,1fr)","repeat(3,1fr)","repeat(3,1fr)","repeat(3,1fr)"]} gap="20px">
 {recipedata!=="undefined"&&recipedata.length>=1?recipedata.map((item,index)=>
 <Box key={index}>
