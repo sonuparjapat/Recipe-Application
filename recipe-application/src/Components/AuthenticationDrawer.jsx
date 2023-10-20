@@ -34,7 +34,7 @@ import { BiLogoGoogle } from 'react-icons/bi'
     return (
       <>
         <Button leftIcon={<Login/>} colorScheme='teal' onClick={onOpen}>
-          Login/Signup
+          Login
         </Button>
 
         {what?

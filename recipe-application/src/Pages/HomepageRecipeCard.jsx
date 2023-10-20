@@ -59,7 +59,7 @@ export default function HomepageRecipeCard({IMAGE,Title}) {
           <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
           
           </Text>
-          <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+          <Heading fontSize={["md","md","md","xl",'xl']} fontFamily={'body'} fontWeight={500}>
           { Title}, pink
           </Heading>
          

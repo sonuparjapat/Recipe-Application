@@ -1,10 +1,9 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import recipeimg from "../Images/recipe.png"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import { Link } from "react-router-dom";
-import {styles} from "../Components/Navbar.module.css"
-
+import { Link, useLocation, useNavigate, useParams, useSearchParams} from "react-router-dom";
+import styles from "../Components/Navbar.module.css"
 import { faArrowRightToBracket, faCartArrowDown, faColonSign, faHome, faLongArrowLeft, faSearch, faSign, faSignIn, faSignOut, faSmile } from "@fortawesome/free-solid-svg-icons";
 import {
     Box,
@@ -25,7 +24,8 @@ import {
     Image,
     Img,
     Input,
-    Spacer
+    Spacer,
+    useLatestRef
   } from '@chakra-ui/react';
   import {
     HamburgerIcon,
@@ -42,20 +42,39 @@ import { useState } from "react";
 
 import { useSelector } from "react-redux";
 import { BirecipeimgutCircle } from "react-icons/bi";
-  export default function Navbar() {
+import AuthenticationDrawer from "./AuthenticationDrawer";
+  export default function HomepageNavbar() {
+    
+    const [searchparams,setSearchParams]=useSearchParams()
+    // const [params,setParmas]=useParams()
     const { isOpen, onToggle } = useDisclosure();
+    const location=useLocation()
+    const navigate=useNavigate()
+    const [input,setInput]=useState(null)
+const handlesearch=(e)=>{
+const obj={}
+setInput(e.target.value)
 
 
+}
+const handlesearchclick=()=>{
+  if(input){
+    navigate(`/search?name=${input}`)
+  } 
+}
+useEffect(()=>{
+    // setSearchParams({})
+},[])
   // const{username,arrangeusername,inputvalue,ourinput}=useContext(Authcontext)
 //   const logindata=useSelector((state)=>state.loginreducer)
 //   const {username,token}=logindata
   // const{inputvalue}=useContext(Authcontext)
 
     return (
-      <Box  width="100&">
+      <Box bg="white"  width="100&" position={"sticky"} top={0.1} zIndex={100}>
         <Flex
-          bg={useColorModeValue('white', 'gray.800')}
-          color={useColorModeValue('gray.600', 'white')}
+        
+          color="black"
           minH={'60px'}
           py={{ base: 2 }}
           px={{ base: 4 }}
@@ -76,38 +95,41 @@ import { BirecipeimgutCircle } from "react-icons/bi";
               aria-label={'Toggle Navigation'}
             />
           </Flex>
+
+          <Box display="flex" justifyContent={"space-evenly"}  w="100%">
+
+         
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
       
-            <Image
+        <Box  w={["50px","50px","50px","50px","50px"]}>  <Link to="/"> <Image
         
         height={10}
             src={recipeimg}
    
+borderRadius={"50%"}
 
-
-           />
+           /></Link> </Box>
        
         
-  
-            <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+
+            <Flex display={["none","none","flex","flex","flex"]} ml={10} >
               <DesktopNav />
             </Flex>
      
 
           </Flex>
-          <Box  mr={{base:"20px",md:"20px",lg:"50"}} display="flex" marginLeft={{base:"5px"}} w={{base:"50%",md:"20%",lg:"33%"}}>
-            <Box  w={{md:"95%"}} >
+          <Box  w={["70%","70%","50%","50%","50%"]}  mr="30px" ml="20px" mt={["0px","0px","10px","10px","10px"]} display="flex"  >
+            <Box w="70%"  >
        
-          <Input  marginRight="30px" variant='outline' placeholder='Search Items' w="99%"/></Box><Box><Button  opacity="0.5"><FontAwesomeIcon icon={faSearch} /></Button></Box>  </Box>
+          <Input variant='outline' onChange={handlesearch} placeholder='Search Items'  /></Box>
+          <Box><Button  ml="5px" opacity="0.5"><FontAwesomeIcon icon={faSearch} onClick={handlesearchclick} /></Button></Box>  </Box>
           
-          <Box w={{base:"40%",md:"9%",lg:"15%"}} ml={4}  display="flex" justifyContent="space-between">
-          {/* _hover={{color:username?"red":""}} icon={username?faSignOut:faSignIn} */}
-<Link to="/login" style={{marginTop:"10px"}}><FontAwesomeIcon  /></Link>
-    <Link to="/cart" style={{marginTop:"10px"}}><FontAwesomeIcon icon={faCartArrowDown} /></Link>
-    {/* <Link to="/favourate" style={{marginTop:"10px"}}><FontAwesomeIcon icon={faSmile} /></Link> */}
-    {/* {username?username:"user:"} */}
-    <Box borderRadius={5} ><p style={{marginTop:"5px",color:"#ff00c6",fontWeight:"bold"}}></p></Box>
-  </Box>
+          <Box display={["none","none","flex","flex","flex"]} justifyContent="space-between">
+
+
+  <Box ml="20px" fontWeight={500} fontSize="20px" mt="10px"> <Link to="/favourates" style={{marginTop:"10px"}} >Favourates</Link></Box> 
+ 
+  </Box> </Box>
         </Flex>
   
         <Collapse in={isOpen} animateOpacity>
@@ -127,20 +149,22 @@ import { BirecipeimgutCircle } from "react-icons/bi";
     return (
       <Stack mt="10px"direction={'row'} spacing={4}>
         {NAV_ITEMS.map((navItem) => (
-          <Box key={navItem.label}>
+          <Box key={navItem.label} fontStyle="bold">
             <Popover trigger={'hover'} placement={'bottom-start'}>
               <PopoverTrigger>
                 <Link
                   p={2}
-                 to={navItem.href}
-                  fontSize={'sm'}
-                  fontWeight={500}
-                  color={linkColor}
-                  _hover={{
-                    textDecoration: 'none',
-                    color: linkHoverColor,
-                  }}>
-                  {navItem.label}
+             
+                 to={navItem.to}
+                 >
+                  <Text  color="white.700" fontSize={'20px'}
+          
+               fontWeight={500}
+         
+               _hover={{
+                 textDecoration: 'none',
+                 color: "linkHoverColor",
+               }} fontStyle="bold" >{navItem.label}</Text> 
                 </Link>
               </PopoverTrigger>
   
@@ -162,6 +186,7 @@ import { BirecipeimgutCircle } from "react-icons/bi";
             </Popover>
           </Box>
         ))}
+        <AuthenticationDrawer/>
       </Stack>
     );
   };
@@ -209,6 +234,10 @@ import { BirecipeimgutCircle } from "react-icons/bi";
         {NAV_ITEMS.map((navItem) => (
           <MobileNavItem key={navItem.label} {...navItem} />
         ))}
+     <Link to="/cart"><Text        fontWeight={600}
+        textAlign="left"    color={useColorModeValue('gray.600', 'gray.200')}> Cart </Text></Link>
+             <Link to="/favourates"><Text  py={2}      fontWeight={600}
+        textAlign="left"    color={useColorModeValue('gray.600', 'gray.200')}> Favourates </Text></Link>
       </Stack>
     );
   };
@@ -252,7 +281,7 @@ import { BirecipeimgutCircle } from "react-icons/bi";
             align={'start'}>
             {children &&
               children.map((child) => (
-                <Link key={child.label} py={2} to={child.href}>
+                <Link key={child.label} py={2} to={child.to}>
                   {child.label}
                 </Link>
               ))}
@@ -267,41 +296,14 @@ import { BirecipeimgutCircle } from "react-icons/bi";
   
   const NAV_ITEMS = [
     {
-      label: 'Make Up',
-      children: [
-        {
-          label: 'Primer',
-         subLabel:"Gives you a Cassic look",
-          href: '/primer',
-        },
-        {
-          label: 'Concealer',
-          subLabel: 'Try this once',
-          href: '/Primer',
-        },
-      ],
+      label: 'ExploreRecipes',
+     to:"/recipes"
+       
     },
-    {
-      label: 'Skin Care',
-      children: [
-        {
-          label: 'Face Wash',
-          subLabel: 'Get a Glow',
-          href: '/primer',
-        },
-        {
-          label: 'Cleanser',
-          subLabel: 'Make your skin happy',
-          href: '/primer',
-        },
-      ],
-    },
-    {
-      label: 'Personal Care',
-      href: '/primer',
-    },
-    {
-      label: 'Men',
-      href: '/primer',
-    },
+    
+    
+  
+  
+
+    
   ];

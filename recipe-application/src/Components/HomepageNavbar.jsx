@@ -96,19 +96,19 @@ useEffect(()=>{
             />
           </Flex>
 
-          <Box display="flex" justifyContent={"space-evenly"} border="1px solid green" w="100%">
+          <Box display="flex" justifyContent={"space-evenly"}  w="100%">
 
          
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-      
+     <Box w={["50px","50px","50px","50px","50px"]}> <Link to="/">
             <Image
-        
+        borderRadius={"50%"}
         height={10}
             src={recipeimg}
    
 
 
-           />
+           /></Link></Box>
        
         
 
@@ -118,7 +118,7 @@ useEffect(()=>{
      
 
           </Flex>
-          <Box border="1px solid red" w={["70%","70%","50%","50%","50%"]} mr="30px" display="flex"  >
+          <Box  w={["70%","70%","50%","50%","50%"]} mr="30px" ml="20px" mt={["0px","0px","0px","10px","10px"]} display="flex"  >
             <Box w="70%"  >
        
           <Input variant='outline' onChange={handlesearch} placeholder='Search Items'  /></Box>
@@ -126,7 +126,7 @@ useEffect(()=>{
           
           <Box display={["none","none","flex","flex","flex"]} justifyContent="space-between">
 
-  <Box fontWeight={500} fontSize="20px" mt="10px" >  <Link to="/cart" style={{marginTop:"10px"}} ><FontAwesomeIcon icon={faCartArrowDown} /></Link></Box>
+
   <Box ml="20px" fontWeight={500} fontSize="20px" mt="10px"> <Link to="/favourates" style={{marginTop:"10px"}} >Favourates</Link></Box> 
  
   </Box> </Box>
