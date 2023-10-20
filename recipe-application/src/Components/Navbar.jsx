@@ -4,6 +4,7 @@ import recipeimg from "../Images/recipe.png"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom";
 import {styles} from "../Components/Navbar.module.css"
+
 import { faArrowRightToBracket, faCartArrowDown, faColonSign, faHome, faLongArrowLeft, faSearch, faSign, faSignIn, faSignOut, faSmile } from "@fortawesome/free-solid-svg-icons";
 import {
     Box,
@@ -43,6 +44,7 @@ import { useSelector } from "react-redux";
 import { BirecipeimgutCircle } from "react-icons/bi";
   export default function Navbar() {
     const { isOpen, onToggle } = useDisclosure();
+
 
   // const{username,arrangeusername,inputvalue,ourinput}=useContext(Authcontext)
 //   const logindata=useSelector((state)=>state.loginreducer)

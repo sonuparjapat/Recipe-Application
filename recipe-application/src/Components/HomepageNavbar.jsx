@@ -1,8 +1,8 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import recipeimg from "../Images/recipe.png"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams, useSearchParams} from "react-router-dom";
 import styles from "../Components/Navbar.module.css"
 import { faArrowRightToBracket, faCartArrowDown, faColonSign, faHome, faLongArrowLeft, faSearch, faSign, faSignIn, faSignOut, faSmile } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -24,7 +24,8 @@ import {
     Image,
     Img,
     Input,
-    Spacer
+    Spacer,
+    useLatestRef
   } from '@chakra-ui/react';
   import {
     HamburgerIcon,
@@ -41,9 +42,29 @@ import { useState } from "react";
 
 import { useSelector } from "react-redux";
 import { BirecipeimgutCircle } from "react-icons/bi";
+import AuthenticationDrawer from "./AuthenticationDrawer";
   export default function HomepageNavbar() {
+    
+    const [searchparams,setSearchParams]=useSearchParams()
+    // const [params,setParmas]=useParams()
     const { isOpen, onToggle } = useDisclosure();
+    const location=useLocation()
+    const navigate=useNavigate()
+    const [input,setInput]=useState(null)
+const handlesearch=(e)=>{
+const obj={}
+setInput(e.target.value)
 
+
+}
+const handlesearchclick=()=>{
+  if(input){
+    navigate(`/search?name=${input}`)
+  } 
+}
+useEffect(()=>{
+    // setSearchParams({})
+},[])
   // const{username,arrangeusername,inputvalue,ourinput}=useContext(Authcontext)
 //   const logindata=useSelector((state)=>state.loginreducer)
 //   const {username,token}=logindata
@@ -74,6 +95,10 @@ import { BirecipeimgutCircle } from "react-icons/bi";
               aria-label={'Toggle Navigation'}
             />
           </Flex>
+
+          <Box display="flex" justifyContent={"space-evenly"} border="1px solid green" w="100%">
+
+         
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
       
             <Image
@@ -86,26 +111,25 @@ import { BirecipeimgutCircle } from "react-icons/bi";
            />
        
         
-  
-            <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+
+            <Flex display={["none","none","flex","flex","flex"]} ml={10} >
               <DesktopNav />
             </Flex>
      
 
           </Flex>
-          <Box  mr={{base:"20px",md:"20px",lg:"50"}} display="flex" marginLeft={{base:"5px"}} w={{base:"50%",md:"20%",lg:"33%"}}>
-            <Box  w={{md:"95%"}} >
+          <Box border="1px solid red" w={["70%","70%","50%","50%","50%"]} mr="30px" display="flex"  >
+            <Box w="70%"  >
        
-          <Input color="white"  marginRight="30px" variant='outline' placeholder='Search Items' w="99%"/></Box><Box><Button  opacity="0.5"><FontAwesomeIcon icon={faSearch} /></Button></Box>  </Box>
+          <Input variant='outline' onChange={handlesearch} placeholder='Search Items'  /></Box>
+          <Box><Button  ml="5px" opacity="0.5"><FontAwesomeIcon icon={faSearch} onClick={handlesearchclick} /></Button></Box>  </Box>
           
-          <Box w={{base:"40%",md:"9%",lg:"15%"}} ml={4}  display="flex" justifyContent="space-between">
-          {/* _hover={{color:username?"red":""}} icon={username?faSignOut:faSignIn} */}
-{/* <Link to="/login" style={{marginTop:"10px"}}><FontAwesomeIcon  /></Link> */}
-    <Link to="/cart" style={{marginTop:"10px"}}><FontAwesomeIcon icon={faCartArrowDown} /></Link>
-    {/* <Link to="/favourate" style={{marginTop:"10px"}}><FontAwesomeIcon icon={faSmile} /></Link> */}
-    {/* {username?username:"user:"} */}
-    <Box borderRadius={5} ><p style={{marginTop:"5px",color:"#ff00c6",fontWeight:"bold"}}></p></Box>
-  </Box>
+          <Box display={["none","none","flex","flex","flex"]} justifyContent="space-between">
+
+  <Box fontWeight={500} fontSize="20px" mt="10px" >  <Link to="/cart" style={{marginTop:"10px"}} ><FontAwesomeIcon icon={faCartArrowDown} /></Link></Box>
+  <Box ml="20px" fontWeight={500} fontSize="20px" mt="10px"> <Link to="/favourates" style={{marginTop:"10px"}} >Favourates</Link></Box> 
+ 
+  </Box> </Box>
         </Flex>
   
         <Collapse in={isOpen} animateOpacity>
@@ -162,6 +186,7 @@ import { BirecipeimgutCircle } from "react-icons/bi";
             </Popover>
           </Box>
         ))}
+        <AuthenticationDrawer/>
       </Stack>
     );
   };
@@ -209,6 +234,10 @@ import { BirecipeimgutCircle } from "react-icons/bi";
         {NAV_ITEMS.map((navItem) => (
           <MobileNavItem key={navItem.label} {...navItem} />
         ))}
+     <Link to="/cart"><Text        fontWeight={600}
+        textAlign="left"    color={useColorModeValue('gray.600', 'gray.200')}> Cart </Text></Link>
+             <Link to="/favourates"><Text  py={2}      fontWeight={600}
+        textAlign="left"    color={useColorModeValue('gray.600', 'gray.200')}> Favourates </Text></Link>
       </Stack>
     );
   };
@@ -271,14 +300,10 @@ import { BirecipeimgutCircle } from "react-icons/bi";
      to:"/recipes"
        
     },
-    {
-      label: 'LogIn',
-      to:"login"
-      
-    },
-    {
-      label: 'SignIn',
-     to:"/signin",
-    },
+    
+    
+  
+  
+
     
   ];
