@@ -49,7 +49,18 @@ Backendlink-https://recipebackend-f3me.onrender.com
   
 ![homepage](https://github.com/sonuparjapat/Recipe-Application/assets/115461488/7a94624a-73e1-4ca3-be56-986e625ffde7)
 
+**Highlighted Features :**
+- Notice the search bar at the top, allowing users to search for recipes by keywords.
+- We've included featured recipes that users can explore right on the homepage.
+- The 'Sign In' and 'Sign Up' buttons in the top-left corner provide quick access to user authentication.
 
+**User Interaction:**
+- Users can enter search terms in the search bar and hit 'Enter' to initiate a recipe search.
+- Clicking on a button (MoreDetails) a featured recipe card will take users to the recipe details page.
+
+**Visual Elements:**
+- We've used a clean and modern design with vibrant food images to make the homepage visually appealing.
+- The navigation menu at the top provides easy access to different sections of the application.
 
 <h2>Authentication</h2>
 1.SignUp
