@@ -51,6 +51,8 @@ import AuthenticationDrawer from "./AuthenticationDrawer";
     const location=useLocation()
     const navigate=useNavigate()
     const [input,setInput]=useState(null)
+    const logindata=useSelector((state)=>state.loginreducer)
+    const {username}=logindata
 const handlesearch=(e)=>{
 const obj={}
 setInput(e.target.value)
@@ -159,7 +161,8 @@ useEffect(()=>{
              
                  to={navItem.to}
                  >
-                  <Text  color="white.700" fontSize={'20px'}
+                  <Text  
+                  color="white.700" fontSize={'20px'}
           
                fontWeight={500}
          
@@ -188,7 +191,9 @@ useEffect(()=>{
             </Popover>
           </Box>
         ))}
-       {sessionStorage.getItem("username")?sessionStorage.getItem("username"):<AuthenticationDrawer/>} 
+       {sessionStorage.getItem("username")?<Text  color="white.700" fontSize={'20px'}
+          
+          fontWeight={500}>{sessionStorage.getItem("username")}</Text>:<AuthenticationDrawer/>} 
       </Stack>
     );
   };
@@ -228,6 +233,9 @@ useEffect(()=>{
   };
   
   const MobileNav = () => {
+    const logindata=useSelector((state)=>state.loginreducer)
+    const {username}=logindata
+    console.log(username)
     return (
       <Stack
         bg={useColorModeValue('white', 'gray.800')}
@@ -239,17 +247,20 @@ useEffect(()=>{
     
              <Link to="/favourates"><Text  py={2}      fontWeight={600}
         textAlign="left"    color={useColorModeValue('gray.600', 'gray.200')}> Favourates </Text></Link>
-           {sessionStorage.getItem("username")?sessionStorage.getItem("username"):<AuthenticationDrawer/>} 
+        
+        {sessionStorage.getItem("username")?<Text  color="white.700" fontSize={'20px'}
+          
+          fontWeight={500}>{sessionStorage.getItem("username")}</Text>:<AuthenticationDrawer/>} 
       </Stack>
     );
   };
   
-  const MobileNavItem = ({ label, children,href }) => {
+  const MobileNavItem = ({ label, children,to }) => {
     const { isOpen, onToggle } = useDisclosure();
   
     return (
       <Stack spacing={4} onClick={children && onToggle}>
-      <Link to={href}><Flex
+      <Link to={to}><Flex
           py={2}
          
           justify={'space-between'}

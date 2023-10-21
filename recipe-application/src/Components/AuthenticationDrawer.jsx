@@ -93,7 +93,7 @@ const handleloginchange=(e)=>{
 const handlelogin=()=>{
   // console.log(logindata)
   dispatch(login(logindata)).then((res)=>{
-    dispatch(loginsuccess())
+    dispatch(loginsuccess(res.data))
     toast({description:res.data.msg,position:"top",status:"success",duration:3000})
     onClose()
    sessionStorage.setItem("username",res.data.username)

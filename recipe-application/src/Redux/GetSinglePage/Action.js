@@ -14,7 +14,7 @@ export const getsinglefailure=()=>{
 
 export const getsingle=(id)=>(dispatch)=>{
 dispatch(getsinglerequest())
-axios.get(`${url}/recipes/${id}/information?apiKey=${"97a93040247d4105ab4eeab6739bd4a2"}`).then((res)=>{
+axios.get(`${url}/recipes/${id}/information?apiKey=${"a07a8a4dbde4477b979fa3635b68a3e4"}`).then((res)=>{
     // console.log(res)
     dispatch(getsinglesuccess(res.data))
 }).catch((err)=>{

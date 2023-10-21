@@ -14,7 +14,7 @@ export default function Homepage() {
   const [loading,setLoading]=useState(false)
 
   const [error,setError]=useState(false)
-  console.log(process.env.REACT_APP_API_KEY,"eky")
+  // console.log(process.env.REACT_APP_API_KEY,"eky")
 
 
   useEffect(()=>{
@@ -33,7 +33,7 @@ getrecipes()
     }).catch((err)=>{
       setLoading(false)
       setError(true)
-      console.log(err)
+      // console.log(err)
     })
   }
   return (

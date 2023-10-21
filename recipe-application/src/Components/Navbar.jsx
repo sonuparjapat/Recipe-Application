@@ -193,7 +193,9 @@ borderRadius={"50%"}
             </Popover>
           </Box>
         ))}
-      {sessionStorage.getItem("username")?sessionStorage.getItem("username"):<AuthenticationDrawer/>}  
+        {sessionStorage.getItem("username")?<Text  color="white.700" fontSize={'20px'}
+          
+          fontWeight={500}>{sessionStorage.getItem("username")}</Text>:<AuthenticationDrawer/>} 
       </Stack>
     );
   };
@@ -244,7 +246,9 @@ borderRadius={"50%"}
    
              <Link to="/favourates"><Text  py={2}      fontWeight={600}
         textAlign="left"    color={useColorModeValue('gray.600', 'gray.200')}> Favourates </Text></Link>
-        {sessionStorage.getItem("username")?sessionStorage.getItem("username"):<AuthenticationDrawer/>}  
+        {sessionStorage.getItem("username")?<Text  color="white.700" fontSize={'20px'}
+          
+          fontWeight={500}>{sessionStorage.getItem("username")}</Text>:<AuthenticationDrawer/>} 
       </Stack>
     );
   };

@@ -18,12 +18,15 @@ import {
   List,
   ListItem,
   Center,
+  useToast,
 } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { MdLocalShipping } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getsingle } from '../Redux/GetSinglePage/Action'
+import { getfav } from '../Redux/GetFavourates/Action'
+import { addtofav, addtofavfailure, addtofavsuccess } from '../Redux/AddTtofav/Action'
 
 export default function Singlepage() {
   const {id}=useParams()
@@ -36,9 +39,20 @@ export default function Singlepage() {
     dispatch(getsingle(id))
   },[])
 
+// handleaddtofavprocess
+const addtofavdata=useSelector((state)=>state.addtofavreducer)
 
+const toast=useToast()
   const handlefavourate=(item)=>{
-console.log(data)
+// console.log(data)
+dispatch(addtofav(data)).then((res)=>{
+  dispatch(addtofavsuccess())
+toast({description:res.data.msg,"position":"top","status":"success",duration:2000})
+
+}).catch((err)=>{
+  dispatch(addtofavfailure())
+  toast({description:err.response.data.msg,"position":"top",status:"error",duration:2000})
+})
   }
   // console.log(singledata,"singledata")
   if(isLoading){
@@ -148,7 +162,24 @@ console.log(data)
               </List>
             </Box>
           </Stack>
+{addtofavdata.isLoading?
+ <Button
+ rounded={'none'}
+ w={'full'}
+ mt={8}
+ size={'lg'}
+ py={'7'}
 
+ // bg={useColorModeValue('gray.900', 'gray.50')}
+ bg="gray.200"
+ // color={useColorModeValue('white', 'gray.900')}
+ textTransform={'uppercase'}
+ _hover={{
+   transform: 'translateY(2px)',
+   boxShadow: 'lg',
+ }}>
+Loading...
+</Button>:
           <Button
             rounded={'none'}
             w={'full'}
@@ -165,7 +196,7 @@ console.log(data)
               boxShadow: 'lg',
             }}>
             Add to Favourates
-          </Button>
+          </Button>}
 
           <Stack direction="row" alignItems="center" justifyContent={'center'}>
         

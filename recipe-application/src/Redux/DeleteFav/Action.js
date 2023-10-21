@@ -13,9 +13,10 @@ export const deletefavfailure=()=>{
 }
 
 export const deletefav=(id)=>(dispatch)=>{
+    // console.log(id)
     const token=sessionStorage.getItem("usertoken")
     dispatch(deletefavrequest())
-    return axios.delete(`${backendurl}/favourate/delete/${id}`,{
+    return axios.delete(`${backendurl}/favourate/${id}`,{
         headers:{
             "Content-Type":"application/json",
             "Authorization":`Bearer ${token}`

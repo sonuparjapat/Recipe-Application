@@ -14,9 +14,13 @@ export const addtofavfailure=()=>{
 }
 
 export const addtofav=(obj)=>(dispatch)=>{
+   
+    const {id,image,instructions,pricePerServing
+,readyInMinutes,title,vegan,veryHealthy,summary,veryPopular}=obj
+  const newobj={id,image,instructions,pricePerServing,readyInMinutes,title,vegan,veryHealthy,summary,veryPopular}
     const token=sessionStorage.getItem("usertoken")
     dispatch(addtofavrequest())
-    return axios.post(`${backendurl}/favourate/add`,obj,{
+    return axios.post(`http://localhost:8080/favourate/add`,newobj,{
         headers:{
             "Content-Type":"application/json",
             "Authorization":`Bearer ${token}`

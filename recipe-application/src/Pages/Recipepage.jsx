@@ -22,7 +22,7 @@ const getrecipedata=useSelector((state)=>state.getrecipesreducer)
 const {isLoading,isError,recipes}=getrecipedata
 const dispatch=useDispatch()
   useEffect(()=>{
-    console.log(searchparams.get("ingredients"),"hek")
+    // console.log(searchparams.get("ingredients"),"hek")
     const paramsobj={
       minCarbs:searchparams.get("minCarbs")&&searchparams.get("minCarbs"),
      maxCarbs:searchparams.get("maxCarbs")&&searchparams.get("maxCarbs"),
@@ -34,27 +34,11 @@ const dispatch=useDispatch()
       query:searchparams.get("query")&&searchparams.get("query"),
      
     }
-    console.log(paramsobj)
+    // console.log(paramsobj)
    dispatch(getrecipes(paramsobj))
     
   },[location.search])
-// getrecipes
-  // const getrecipes=(paramsobj)=>{
-  //   setLoading(true)
-  //   setError(false)
-  //   axios.get(`${url}/recipes/complexSearch?apiKey=${apikey}`,{
-  //    params:paramsobj
-  //   }).then((res)=>{
 
-  //    setRecipedata(res.data.results)
-  //    setLoading(false)
-  //    setError(false)
-  //   }).catch((err)=>{
-  //     setLoading(false)
-  //     setError(true)
-  //     console.log(err)
-  //   })
-  // }
   const handleby=(e)=>{
 
 

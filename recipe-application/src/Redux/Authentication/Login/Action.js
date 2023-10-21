@@ -5,8 +5,8 @@ import { backendurl } from "../../../ApiKey/Apikey"
 export const loginrequest=()=>{
     return {type:loginreq}
 }
-export const loginsuccess=()=>{
-    return {type:loginsucc}
+export const loginsuccess=(payload)=>{
+    return {type:loginsucc,payload}
 }
 
 export const loginfailure=()=>{
