@@ -6,6 +6,7 @@ import HomepageNavbar from '../Components/HomepageNavbar'
 import Recipepage from '../Pages/Recipepage'
 import Singlepage from '../Pages/Singlepage'
 import Favouratepage from '../Pages/Favouratepage'
+import PrivateRoute from './PrivateRoute'
 export default function AllRoutes() {
     const location=useLocation()
     // console.log(location.pathname)
@@ -15,7 +16,7 @@ export default function AllRoutes() {
   <Routes>
     <Route path="/:name" element={<Recipepage/>}></Route>
     <Route path="/recipes" element={<Recipepage/>}/>
-<Route path="/favourates" element={<Favouratepage/>}></Route>
+<Route path="/favourates" element={<PrivateRoute><Favouratepage/></PrivateRoute>}></Route>
    <Route path="/details/:id" element={<Singlepage/>}></Route>     
         
         </Routes></>

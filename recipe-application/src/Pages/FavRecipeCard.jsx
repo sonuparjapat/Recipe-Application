@@ -24,7 +24,11 @@ export default function FavRecipecard({IMAGE,Title,Id,handleforany}) {
     const deletedata=useSelector((state)=>state.deletefavreducer)
     const {deleteisLoading,deleteisError}=deletedata
 const toast=useToast()
+
+// handledeleteprocess
+const token=sessionStorage.getItem("usertoken")
     const handledelete=(id)=>{
+
         dispatch(deletefav(id)).then((res)=>{
             dispatch(deletefavsuccess())
 toast({description:res.data.msg,"position":"top","status":'success',duration:2000})
