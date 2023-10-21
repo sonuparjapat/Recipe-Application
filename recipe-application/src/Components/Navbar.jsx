@@ -40,9 +40,10 @@ import {
 import { useState } from "react";
   import { useContext } from "react";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BirecipeimgutCircle } from "react-icons/bi";
 import AuthenticationDrawer from "./AuthenticationDrawer";
+import { getrecipes } from "../Redux/GetRecipes/Action";
   export default function HomepageNavbar() {
     
     const [searchparams,setSearchParams]=useSearchParams()
@@ -54,13 +55,17 @@ import AuthenticationDrawer from "./AuthenticationDrawer";
 const handlesearch=(e)=>{
 const obj={}
 setInput(e.target.value)
-
-
+e.target.value&&(obj.query=e.target.value)
+setSearchParams(obj)
 }
+const dispatch=useDispatch()
+
 const handlesearchclick=()=>{
-  if(input){
-    navigate(`/search?name=${input}`)
-  } 
+  const obj={
+
+  }
+  obj.query=searchparams.get("query")&&searchparams.get('query')
+dispatch(getrecipes(obj))
 }
 useEffect(()=>{
     // setSearchParams({})

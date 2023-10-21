@@ -47,6 +47,7 @@ export default function Filter() {
     const firstField = React.useRef()
   const handlesearchby=(e)=>{
     setSearchby(e.target.value)
+    clearfilter()
   }
   const handlechange=(e)=>{
     const {name,value}=e.target
@@ -246,10 +247,11 @@ min={50}
             </DrawerBody>
   
             <DrawerFooter borderTopWidth='1px'>
-              <Button variant='outline' mr={3} onClick={onClose}>
+              <Button variant='outline' mr={3} onClick={()=>{onClose()
+            clearfilter()}}>
                 Cancel
               </Button>
-              <Button colorScheme='blue'>Submit</Button>
+              <Button colorScheme='blue' onClick={onClose}>Submit</Button>
             </DrawerFooter>
           </DrawerContent>
         </Drawer>

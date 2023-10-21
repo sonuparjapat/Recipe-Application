@@ -9,9 +9,10 @@ import {
   Stack,
   Image,
 } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
 
 
-export default function HomepageRecipeCard({IMAGE,Title}) {
+export default function HomepageRecipeCard({IMAGE,Title,Id}) {
   return (
     <Center py={12}>
       <Box
@@ -62,7 +63,7 @@ export default function HomepageRecipeCard({IMAGE,Title}) {
           <Heading fontSize={["md","md","md","xl",'xl']} fontFamily={'body'} fontWeight={500}>
           { Title}, pink
           </Heading>
-         
+          <Link to={`/details/${Id}`}><Text>More Details</Text></Link>
         </Stack>
       </Box>
     </Center>

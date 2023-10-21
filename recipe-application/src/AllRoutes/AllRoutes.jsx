@@ -4,6 +4,7 @@ import Navbar from '../Components/Navbar'
 import Homepage from '../Pages/Homepage'
 import HomepageNavbar from '../Components/HomepageNavbar'
 import Recipepage from '../Pages/Recipepage'
+import Singlepage from '../Pages/Singlepage'
 export default function AllRoutes() {
     const location=useLocation()
     // console.log(location.pathname)
@@ -13,7 +14,7 @@ export default function AllRoutes() {
   <Routes>
     
 <Route path="/:name" element={<Recipepage/>}></Route>
-        
+   <Route path="/details/:id" element={<Singlepage/>}></Route>     
         
         </Routes></>
   )

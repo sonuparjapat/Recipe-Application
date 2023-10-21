@@ -57,8 +57,8 @@ getrecipes()
         {data.length!=="undefined"&&data.length>=1&&data.map((item,index)=>
       
          <Box key={index}>
-       <HomepageRecipeCard IMAGE={item.image} Title={item.title}/>
-     
+       <HomepageRecipeCard IMAGE={item.image} Title={item.title} Id={item.id}/>
+   
          </Box>
          
         )
