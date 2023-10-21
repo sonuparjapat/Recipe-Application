@@ -95,6 +95,12 @@ To get started with this recipe application, follow these simple steps:
    ```shell
    npm start
 
+## Contact
+
+For questions or feedback, don't hesitate to reach out to us:
+
+- Email: sonuparjapat.connect@gmail.com
+- GitHub: [sonuparjapat](https://github.com/sonuparjapat)
 
 
 
