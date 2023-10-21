@@ -67,8 +67,10 @@ const dispatch=useDispatch()
   }
   return (
 <>
-<Box  w="90%" margin="auto" pb="30px"  border="1px solid red">
-  <Box display={"flex"} justifyContent={"right"} alignItems={"right"}><Filter/></Box>
+<Box mt="30px"><Center><Heading color="yellow.500">Good Taste</Heading></Center></Box>
+<Center><Heading size={"md"} color="red.300">Find All Recipes Here</Heading></Center>
+<Box  w="90%" margin="auto" pb="30px" mt="30px">
+  {/* <Box display={"flex"} justifyContent={"right"} alignItems={"right"}><Filter/></Box> */}
 <Box display={"grid"} gridTemplateColumns={["repeat(1,1fr)","repeat(2,1fr)","repeat(3,1fr)","repeat(3,1fr)","repeat(3,1fr)"]} gap="20px">
 {recipes!=="undefined"&&recipes.length>=1?recipes.map((item,index)=>
 <Box key={index}>

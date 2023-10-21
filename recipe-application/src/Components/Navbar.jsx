@@ -64,6 +64,7 @@ const handlesearchclick=()=>{
   const obj={
 
   }
+  navigate(`/recipes?query=${input}`)
   obj.query=searchparams.get("query")&&searchparams.get('query')
 dispatch(getrecipes(obj))
 }
@@ -133,6 +134,7 @@ borderRadius={"50%"}
 
 
   <Box ml="20px" fontWeight={500} fontSize="20px" mt="10px"> <Link to="/favourates" style={{marginTop:"10px"}} >Favourates</Link></Box> 
+ <Box display={["inline","inline","none","none","none"]}> <Box><AuthenticationDrawer/> </Box> </Box>
  
   </Box> </Box>
         </Flex>
@@ -191,7 +193,7 @@ borderRadius={"50%"}
             </Popover>
           </Box>
         ))}
-        <AuthenticationDrawer/>
+      {sessionStorage.getItem("username")?sessionStorage.getItem("username"):<AuthenticationDrawer/>}  
       </Stack>
     );
   };
@@ -239,20 +241,20 @@ borderRadius={"50%"}
         {NAV_ITEMS.map((navItem) => (
           <MobileNavItem key={navItem.label} {...navItem} />
         ))}
-     <Link to="/cart"><Text        fontWeight={600}
-        textAlign="left"    color={useColorModeValue('gray.600', 'gray.200')}> Cart </Text></Link>
+   
              <Link to="/favourates"><Text  py={2}      fontWeight={600}
         textAlign="left"    color={useColorModeValue('gray.600', 'gray.200')}> Favourates </Text></Link>
+        {sessionStorage.getItem("username")?sessionStorage.getItem("username"):<AuthenticationDrawer/>}  
       </Stack>
     );
   };
   
-  const MobileNavItem = ({ label, children,href }) => {
+  const MobileNavItem = ({ label, children,to }) => {
     const { isOpen, onToggle } = useDisclosure();
   
     return (
       <Stack spacing={4} onClick={children && onToggle}>
-      <Link to={href}><Flex
+      <Link to={to}><Flex
           py={2}
          
           justify={'space-between'}

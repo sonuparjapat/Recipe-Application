@@ -142,7 +142,9 @@ useEffect(()=>{
   }
   
   const DesktopNav = () => {
+    const [username,setUsername]=useState(localStorage.getItem("username"))
     const linkColor = useColorModeValue('gray.600', 'gray.200');
+
     const linkHoverColor = useColorModeValue('gray.800', 'white');
     const popoverContentBgColor = useColorModeValue('white', 'gray.800');
   
@@ -186,7 +188,7 @@ useEffect(()=>{
             </Popover>
           </Box>
         ))}
-        <AuthenticationDrawer/>
+       {sessionStorage.getItem("username")?sessionStorage.getItem("username"):<AuthenticationDrawer/>} 
       </Stack>
     );
   };
@@ -234,10 +236,10 @@ useEffect(()=>{
         {NAV_ITEMS.map((navItem) => (
           <MobileNavItem key={navItem.label} {...navItem} />
         ))}
-     <Link to="/cart"><Text        fontWeight={600}
-        textAlign="left"    color={useColorModeValue('gray.600', 'gray.200')}> Cart </Text></Link>
+    
              <Link to="/favourates"><Text  py={2}      fontWeight={600}
         textAlign="left"    color={useColorModeValue('gray.600', 'gray.200')}> Favourates </Text></Link>
+           {sessionStorage.getItem("username")?sessionStorage.getItem("username"):<AuthenticationDrawer/>} 
       </Stack>
     );
   };
