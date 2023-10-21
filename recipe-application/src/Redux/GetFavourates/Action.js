@@ -15,7 +15,7 @@ export const getfavfailure=()=>{
 export const getfav=(dispatch)=>{
     
     const token=sessionStorage.getItem("usertoken")
-    console.log(token)
+    // console.log(token)
     dispatch(getfavrequest())
     axios.get(`${backendurl}/favourate/get`,{
         headers:{

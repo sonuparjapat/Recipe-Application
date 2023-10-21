@@ -16,7 +16,7 @@ export const getrecipefailure=()=>{
 
 export const getrecipes=(obj)=>(dispatch)=>{
     dispatch(getreciperequest())
-    axios.get(`${url}/recipes/complexSearch?apiKey=${"a07a8a4dbde4477b979fa3635b68a3e4"}`,{
+    axios.get(`${url}/recipes/complexSearch?apiKey=${apikey}`,{
         params:obj
        }).then((res)=>{
         dispatch(getrecipesuccess(res.data.results))}).catch(()=>dispatch(getrecipefailure()))
